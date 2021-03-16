@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Projeto Agenda Cliente Contatos</title>
+	<h:outputStylesheet library="css" name="padrao.css" />
+</h:head>
+<h:body>
+	<h:form>	
+		<table border="2" style="width: 100%; height: 100px;">
+			<tr>
+				<td colspan="2">
+					<ui:insert name="cabecalho">
+						<h1>Projeto Cliente Contatos</h1>
+					</ui:insert></td>
+			</tr>
+			<tr>
+				<td width="20%" align="center" valign="top">
+					<ui:insert name="menu">
+						<p:menu >
+							<p:submenu label="Menu" >
+	
+								<p:menuitem value="Tela inicial" url="./telaPrincipal.xhtml" />
+								<p:menuitem value="Login" url="./login.xhtml" />
+								<p:menuitem value="Cadastro Cliente" url="./cadastroCliente.xhtml" />
+								<p:menuitem value="Pesquisar Cliente" url="./pesquisaCliente.xhtml" />
+								
+							</p:submenu>
+						</p:menu>
+
+						</ui:insert>
+					</td>
+				<td valign="top"><ui:insert name="conteudo" >
+			      Eu sou o segundo!!!
+			    </ui:insert></td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>

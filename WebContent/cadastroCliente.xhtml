@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templatePrincipal.xhtml">
+	<ui:define name="cabecalho">
+		<h1 class="teste">Cadastro de Cliente</h1>
+	</ui:define>
+	<ui:define name="conteudo">
+	<f:metadata>
+	  <f:viewAction action="#{ClienteBean.inicializarCampos}" />
+	</f:metadata>
+		<p:growl id="growl" showDetail="true" />
+
+		<p:panelGrid style="width: 100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="CPF:" />
+				</p:column>
+				<p:column colspan="3">
+					<p:inputText value="#{ClienteBean.cliente.cpf}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="Nome:" />
+				</p:column>
+				<p:column colspan="3">
+					<p:inputText value="#{ClienteBean.cliente.nome}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="Sexo:" />
+				</p:column>
+				<p:column>
+					<p:selectOneMenu value="#{ClienteBean.cliente.sexo}" >
+						<f:selectItem itemLabel="Selecione um" itemValue="" />
+						<f:selectItem itemLabel="Masculino" itemValue="M" />
+						<f:selectItem itemLabel="Feminino" itemValue="F" />
+						<f:selectItem itemLabel="Outros" itemValue="O" />
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Idade:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{ClienteBean.cliente.idade}" required="true"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="Interesses:" />
+				</p:column>
+				<p:column>
+					<p:inputText value="#{ClienteBean.cliente.interesses}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="4">
+					<p:fieldset legend="Contatos">
+						<p:panelGrid style="width: 100%">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Email:" />
+									<p:inputText value="#{ClienteBean.contato.email}" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Telefone:" />
+									<p:inputText value="#{ClienteBean.contato.telefone}" />
+								</p:column>
+								<p:column>
+									<p:commandButton value="Adicionar" update="@form" 
+										actionListener="#{ClienteBean.adicionarContato}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="3">
+									<p:dataTable value="#{ClienteBean.cliente.listaContatos}" 
+										var="contatoGrid">
+										<p:column headerText="Email">
+											<h:outputText value="#{contatoGrid.email}"/>
+										</p:column>
+										<p:column headerText="Telefone">
+											<h:outputText value="#{contatoGrid.telefone}"/>
+										</p:column>
+										<p:column>
+											<p:commandButton value="remover" update="@form" 
+												action="#{ClienteBean.removerContato}">
+												<f:setPropertyActionListener
+													target="#{ClienteBean.emailSel}"
+													value="#{contatoGrid.email}" />
+												<f:setPropertyActionListener
+													target="#{ClienteBean.telefoneSel}" 
+													value="#{contatoGrid.telefone}" />
+											</p:commandButton>
+										</p:column>
+									</p:dataTable>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="4">
+					<p:commandButton value="SALVAR" update="@form"
+						actionListener="#{ClienteBean.salvar}" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+
+
+
+	</ui:define>
+</ui:composition>
+
+</html>
